@@ -4,7 +4,7 @@
 int main()
 {
 int fd;
-fd= open("text",O_CREAT|O_EXCL,0777);
+fd= open("text",O_RDWR|O_CREAT|O_EXCL,0777);
 printf("output: %d\n",fd);
 if(fd==-1)
 printf("failed\n");
