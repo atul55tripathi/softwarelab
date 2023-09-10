@@ -1,3 +1,12 @@
+/*
+============================================================================
+Name : 6.c
+Author : Atul Tripathi
+Description : C program to read and write using stdin and stdout
+Date: 11th Aug, 2023.
+============================================================================
+*/
+
 #include<sys/types.h>
 #include<sys/stat.h>
 #include<fcntl.h>

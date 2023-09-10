@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 3.c
+Author : Atul Tripathi
+Description : C program to creat a file and print the file descriptor value
+Date: 5th Aug, 2023.
+============================================================================
+*/
 #include<stdio.h>
 #include<fcntl.h>
 int main()

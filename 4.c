@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 4.c
+Author : Atul Tripathi
+Description : C program to open an existing file in read write mode
+Date: 5th Aug, 2023.
+============================================================================
+*/
 #include<stdio.h>
 #include<fcntl.h>
 

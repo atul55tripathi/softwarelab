@@ -1,3 +1,11 @@
+/*
+============================================================================
+Name : 5.c
+Author : Atul Tripathi
+Description : C program to make 5 files and run and infinite loop
+Date: 5th Aug, 2023.
+============================================================================
+*/
 #include<stdio.h>
 #include<fcntl.h>
 int main(int argc,char* argv[])

@@ -1,36 +1,45 @@
+/*
+============================================================================
+Name : 13.c
+Author : Atul Tripathi
+Description : C program to use select command and wait for input for 10 sec 
+Date: 21st Aug, 2023.
+============================================================================
+*/
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
 
 int main() {
-    fd_set rfds;
-    struct timeval tv;
-    int retval;
+    fd_set read_fds;
+    struct timeval timeout;
+    int ret;
+    timeout.tv_sec = 10;    
+    timeout.tv_usec = 0;
 
-    // Watch STDIN (file descriptor 0) to see when it has input.
-    FD_ZERO(&rfds);
-    FD_SET(0, &rfds);
+    FD_ZERO(&read_fds);    
+    FD_SET(STDIN_FILENO, &read_fds); 
 
-    // Set the timeout to 10 seconds.
-    tv.tv_sec = 10;
-    tv.tv_usec = 0;
+   
 
     printf("Waiting for input from STDIN for 10 seconds...\n");
 
-    // Wait for input or timeout using select.
-    retval = select(1, &rfds, NULL, NULL, &tv);
+    ret = select(STDIN_FILENO + 1, &read_fds, NULL, NULL, &timeout);
 
-    if (retval == -1) {
+    if (ret == -1) {
         perror("select");
-    } else if (retval) {
-        if (FD_ISSET(0, &rfds)) {
-            printf("Data is available now!\n");
-        }
+    } else if (ret == 0) {
+        printf("No data available within 10 seconds.\n");
     } else {
-        printf("No data within 10 seconds.\n");
+        if (FD_ISSET(STDIN_FILENO, &read_fds)) {
+            printf("Data is available within 10 seconds.\n");
+            char buffer[256];
+            fgets(buffer, sizeof(buffer), stdin);
+        } else {
+            printf("STDIN is not set.\n");
+        }
     }
 
     return 0;
-    }
+}
